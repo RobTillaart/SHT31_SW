@@ -8,18 +8,21 @@
 
 # SHT31_SW
 
-Arduino library for the SHT31 temperature and humidity sensor.
+Arduino library for the SHT31 temperature and humidity sensor - using **SoftWire**.
 
 This library is the same as - https://github.com/RobTillaart/SHT31
 except is uses **SoftWire** for communication.
+This is a software I2C bus library to be able to select other pins than the default
+(AVR) hardware I2C.
+
+Status: experimental
 
 
 ## Description
 
 The SHT3x family of sensors should work up to 1 MHz I2C
 
-This library should also work for SHT30/35/85 but these are 
-not tested yet.
+This library should also work for SHT30/35/85 but these are not tested yet.
 
 Accuracy table
 
