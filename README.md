@@ -10,17 +10,31 @@
 
 Arduino library for the SHT31 temperature and humidity sensor - using **SoftWire**.
 
-This library is the same as - https://github.com/RobTillaart/SHT31
-except is uses **SoftWire** for communication.
-This is a software I2C bus library to be able to select other pins than the default
-(AVR) hardware I2C.
-
-Status: experimental
-
 
 ## Description
 
-The SHT3x family of sensors should work up to 1 MHz I2C
+This library features the class SHT31_SW derived from - https://github.com/RobTillaart/SHT31
+It has the same interface as the SHT31 class so please use that documentation 
+as it will be the "leading class".
+
+The main difference is that this SHT31_SW class uses the **SoftWire** 
+library for communication instead of the **TwoWire** based **Wire** class.
+
+**SoftWire** is a software I2C bus library to be able to select other pins 
+than the default (AVR) hardware I2C pins (SDA and SCL).
+An important reason to use this version is when you want more than two 
+devices on one Arduino.
+
+
+#### Status
+
+- experimental
+- created as alternative for SHT31 PR #35.
+
+
+#### SHT sensors
+
+The SHT3x family of sensors should work up to 1 MHz I2C (although 
 
 This library should also work for SHT30/35/85 but these are not tested yet.
 
@@ -34,12 +48,28 @@ Accuracy table
 |  SHT85   |  ~0.2         |  1.5       |
 
 
+#### Links
+
+These libraries need to be installed to get SHT31_SW working:
+
+- https://github.com/stevemarple/SoftWire
+- https://github.com/stevemarple/AsyncDelay
+- https://github.com/RobTillaart/SHT31
+
+
 ## Interface
+
+```cpp
+#include "SHT31_SW.h"
+```
+
+Note: The interface is mostly inherited from SHT31 but presented here for completeness.
+
 
 #### Base interface
 
 - **SHT31_SW()** constructor.
-- **bool begin(uint8_t address,  SoftWire \*wire = &Wire)** for platforms with multiple I2C buses.
+- **bool begin(uint8_t address, SoftWire \*wire = &Wire)** for platforms with multiple I2C buses.
 - **bool begin(SoftWire \*wire = &Wire)** same as above. With default SHT_DEFAULT_ADDRESS.
 - **bool read(bool fast = true)** blocks 4 (fast) or 15 (slow) milliseconds + actual read + math.
 Does read both the temperature and humidity.
@@ -49,11 +79,11 @@ Does read both the temperature and humidity.
 - **bool reset(bool hard = false)** resets the sensor, soft reset by default. Returns false if it fails.
 - **float getHumidity()** computes the relative humidity in % based on the latest raw reading, and returns it.
 - **float getTemperature()** computes the temperature in °C based on the latest raw reading, and returns it.
-- **float getFahrenheit()** computes the temperature in °F based on the latest raw reading, and returns it..
+- **float getFahrenheit()** computes the temperature in °F based on the latest raw reading, and returns it.
 - **uint16_t getRawHumidity()** returns the raw two-byte representation of humidity directly from the sensor.
 - **uint16_t getRawTemperature()** returns the raw two-byte representation of temperature directly from the sensor.
 
-Note that the temperature and humidity values are recalculated on every call to getHumidity() and getTemperature(). 
+Note that the temperature and humidity values are recalculated on every call to **getHumidity()** and **getTemperature()**. 
 If you're worried about the extra cycles, you should make sure to cache these values or only request them after 
 you've performed a new reading.
 
@@ -82,7 +112,7 @@ Be sure to clear the error flag by calling **getError()** before calling any com
 **WARNING:** Do not use heater for long periods. 
 
 Use the heater for max **180** seconds, and let it cool down **180** seconds = 3 minutes. 
-Version 0.3.3 and up guards the cool down time by preventing switching the heater on 
+SHT31 version 0.3.3 and up guards the cool down time by preventing switching the heater on 
 within **180** seconds of the last switch off. Note: this guarding is not reboot persistent. 
 
 **WARNING:** The user is responsible to switch the heater off manually!
@@ -137,14 +167,8 @@ Returns false if reading fails or in case of a CRC failure.
 |       |                              |  1      | checksum of last write transfer failed
 
 
-
-## Operation
-
-See examples.
-
-
 ## Future
 
-- keep in sync with SHT32 library
+- keep in sync with (leading) SHT31 library
 
 
