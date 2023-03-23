@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Temporay patch for arduino_ci
-#
+# 
 # util/atomic.h hasn't been mocked so far, once this chenges, throw this awy.
 # For now copy a mock version of atomic.h into the appropriate directory.
 
