@@ -17,6 +17,7 @@ unittest:
   libraries:
     - "SoftWire"
     - "AsyncDelay"
+    - "SHT31"
 
 compile:
   # Choosing to run compilation tests on 2 different Arduino platforms
@@ -32,3 +33,5 @@ compile:
     - rpipico
   libraries:
     - "SoftWire"
+    - "AsyncDelay"
+    - "SHT31"
