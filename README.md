@@ -8,7 +8,7 @@
 
 # SHT31_SW
 
-Arduino library for the SHT31 temperature and humidity sensor - using **SoftWire**.
+Arduino library for the SHT31 temperature and humidity sensor - using **SoftwareWire**.
 
 
 ## Description
@@ -17,20 +17,23 @@ This library features the class SHT31_SW derived from - https://github.com/RobTi
 It has the same interface as the SHT31 class so please use that documentation 
 as it will be the "leading class".
 
-The main difference is that this SHT31_SW class uses the **SoftWire** 
+The main difference is that this SHT31_SW class uses the **SoftwareWire** 
 library for communication instead of the **TwoWire** based **Wire** class.
 
-**SoftWire** is a software I2C bus library to be able to select other pins 
+**SoftwareWire** is a software I2C bus library to be able to select other pins 
 than the default (AVR) hardware I2C pins (SDA and SCL).
 An important reason to use this version is when you want more than two 
 devices on one Arduino.
 
 
-#### Status
+#### Status 
 
 - experimental
 - created as alternative for SHT31 PR #35.
-
+- 0.1.0 uses SoftWire which worked for the SHT31 but failed for the SHT85.
+- 0.2.0 uses SoftwareWire which also works for the SHT85. (see issue #5)
+  - The footprint for SoftwareWire is ~500 bytes smaller (on UNO).
+  
 
 #### SHT sensors
 
@@ -52,9 +55,15 @@ Accuracy table
 
 These libraries need to be installed to get SHT31_SW working:
 
+- https://github.com/RobTillaart/SHT31
+
+Version 0.2.x and up.
+- https://github.com/Testato/SoftwareWire
+
+Version 0.1.0
 - https://github.com/stevemarple/SoftWire
 - https://github.com/stevemarple/AsyncDelay
-- https://github.com/RobTillaart/SHT31
+
 
 
 ## Interface
@@ -69,8 +78,8 @@ Note: The interface is mostly inherited from SHT31 but presented here for comple
 #### Base interface
 
 - **SHT31_SW()** constructor.
-- **bool begin(uint8_t address, SoftWire \*wire = &Wire)** for platforms with multiple I2C buses.
-- **bool begin(SoftWire \*wire = &Wire)** same as above. With default SHT_DEFAULT_ADDRESS.
+- **bool begin(uint8_t address, SoftwareWire \*wire = &Wire)** for platforms with multiple I2C buses.
+- **bool begin(SoftwareWire \*wire = &Wire)** same as above. With default SHT_DEFAULT_ADDRESS.
 - **bool read(bool fast = true)** blocks 4 (fast) or 15 (slow) milliseconds + actual read + math.
 Does read both the temperature and humidity.
 - **bool isConnected()** check sensor is reachable over I2C. Returns false if not connected.
@@ -169,6 +178,14 @@ Returns false if reading fails or in case of a CRC failure.
 
 ## Future
 
-- keep in sync with (leading) SHT31 library
+#### Must
 
+- keep in sync with (leading) SHT31 library
+- remove script for atomic if not needed any more.
+
+#### Should
+
+#### Could
+
+#### Wont
 

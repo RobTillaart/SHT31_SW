@@ -5,13 +5,11 @@
 //     URL: https://github.com/RobTillaart/SHT31_SW
 
 
-#include "SoftWire.h"
 #include "SHT31_SW.h"
 
 #define SHT31_ADDRESS   0x44
 
-
-SoftWire sw(6, 7);
+SoftwareWire sw(6, 7);
 
 uint32_t start;
 uint32_t stop;
@@ -27,8 +25,10 @@ void setup()
   Serial.println(SHT31_SW_LIB_VERSION);
 
   sw.begin();
-  sht.begin(SHT31_ADDRESS, &sw);
-  sw.setClock(100000);
+  bool b = sht.begin(SHT31_ADDRESS, &sw);
+  Serial.print("CON: ");
+  Serial.println(b);
+  // sw.setClock(50000);
 
   uint16_t stat = sht.readStatus();
   Serial.print(stat, HEX);
@@ -39,7 +39,7 @@ void setup()
 void loop()
 {
   start = micros();
-  sht.read();         //  default = true/fast       slow = false
+  sht.read(false);         //  default = true/fast       slow = false
   stop = micros();
 
   Serial.print("\t");

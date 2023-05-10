@@ -1,10 +1,10 @@
 //
 //    FILE: SHT31_SW.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
+// VERSION: 0.2.0
 //    DATE: 2019-02-08 (base SHT31 lib)
 // PURPOSE: Arduino library for the SHT31 temperature and humidity sensor
-//          to be used with the SoftWire library instead of (hardware) Wire.
+//          to be used with the SoftwareWire library instead of (hardware) Wire.
 //          derives from SHT31 0.3.8
 //          https://www.adafruit.com/product/2857
 //     URL: https://github.com/RobTillaart/SHT31_SW
@@ -44,7 +44,7 @@ SHT31_SW::SHT31_SW()
 }
 
 
-bool SHT31_SW::begin(const uint8_t address,  SoftWire *softWire)
+bool SHT31_SW::begin(const uint8_t address,  SoftwareWire *softWire)
 {
   if ((address != 0x44) && (address != 0x45))
   {
@@ -57,7 +57,7 @@ bool SHT31_SW::begin(const uint8_t address,  SoftWire *softWire)
 }
 
 
-bool SHT31_SW::begin(SoftWire *softWire)
+bool SHT31_SW::begin(SoftwareWire *softWire)
 {
   return begin(SHT_DEFAULT_ADDRESS, softWire);
 }

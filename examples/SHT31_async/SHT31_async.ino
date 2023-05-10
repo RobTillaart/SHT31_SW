@@ -5,13 +5,12 @@
 //     URL: https://github.com/RobTillaart/SHT31_SW
 
 
-#include "SoftWire.h"
 #include "SHT31_SW.h"
 
 #define SHT31_ADDRESS   0x44
 
 
-SoftWire sw(6, 7);
+SoftwareWire sw(6, 7);
 
 uint32_t start;
 uint32_t stop;
