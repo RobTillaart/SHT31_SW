@@ -15,8 +15,7 @@ packages:
 
 unittest:
   libraries:
-    - "SoftWire"
-    - "AsyncDelay"
+    - "SoftwareWire"
     - "SHT31"
 
 compile:
@@ -32,6 +31,5 @@ compile:
     # - mega2560
     - rpipico
   libraries:
-    - "SoftWire"
-    - "AsyncDelay"
+    - "SoftwareWire"
     - "SHT31"
