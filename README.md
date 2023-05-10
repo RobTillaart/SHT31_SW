@@ -169,6 +169,14 @@ Returns false if reading fails or in case of a CRC failure.
 
 ## Future
 
-- keep in sync with (leading) SHT31 library
+#### Must
 
+- keep in sync with (leading) SHT31 library
+- remove script for atomic if not needed any more.
+
+#### Should
+
+#### Could
+
+#### Wont
 
