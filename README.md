@@ -34,10 +34,11 @@ devices on one Arduino.
 
 The **SoftWire** library is portable, however it could not read (on AVR)
 the SHT85 sensor which is command compatible with the SHT3x.
-The cause is not found yet.
-Therefore a separate repo is created based upon the AVR specific **SoftwareWire**
+A possible fix has been made in 0.3.0 and seems to work (See #12) but this
+has to be verified.
+
+A separate repo is created based upon the AVR specific **SoftwareWire**
 see links below. 
-If you know a solution to get softWire working on AVR, please let me know.
 
 The **SoftwareWire** library is an AVR specific and worked for the SHT85.
 See https://github.com/RobTillaart/SHT31_SW/issues/5
@@ -193,6 +194,7 @@ Returns false if reading fails or in case of a CRC failure.
 #### Must
 
 - keep in sync with (leading) SHT31 and SHT31_SWW library.
+- verify the fix #12 with the buffers on AVR.
 
 #### Should
 
