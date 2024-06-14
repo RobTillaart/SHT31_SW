@@ -32,9 +32,11 @@ public:
 private:
   bool writeCmd(uint16_t cmd);
   bool readBytes(uint8_t n, uint8_t *val);
+
   SoftWire* _softWire;
-  char swTxBuffer[8];  //  see #12, should be big enough
-  char swRxBuffer[8];  //  see #12, should be big enough
+
+  char swTxBuffer[8];  //  see #12
+  char swRxBuffer[8];  //  see #12
 };
 
 

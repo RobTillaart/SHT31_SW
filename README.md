@@ -34,8 +34,9 @@ devices on one Arduino.
 
 The **SoftWire** library is portable, however it could not read (on AVR)
 the SHT85 sensor which is command compatible with the SHT3x.
-A possible fix has been made in 0.3.0 and seems to work (See #12) but this
-has to be verified.
+A fix has been made in 0.3.0 and works on AVR (UNO) with an SHT31.
+See #12. It still has to be verified with an SHT85.
+The solution was to add buffers for I2C.
 
 A separate repo is created based upon the AVR specific **SoftwareWire**
 see links below. 
@@ -194,12 +195,12 @@ Returns false if reading fails or in case of a CRC failure.
 #### Must
 
 - keep in sync with (leading) SHT31 and SHT31_SWW library.
-- verify the fix #12 with the buffers on AVR.
 
 #### Should
 
 - remove script for atomic if not needed any more.
-- investigate why SHT85 does not work with SoftWire.
+- verify SHT85 (as SHT31 works now).
+- make **isCOnnected()** more robust, it now only fails on missing CLOCK.
 
 #### Could
 
